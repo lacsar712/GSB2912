@@ -248,6 +248,36 @@ CREATE TABLE IF NOT EXISTS alert_record (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='告警记录表';
 
 -- ============================================
+-- 设备维护工单表
+-- ============================================
+CREATE TABLE IF NOT EXISTS maintenance_order (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'ID',
+    order_code VARCHAR(50) NOT NULL COMMENT '工单编号',
+    order_title VARCHAR(200) NOT NULL COMMENT '工单标题',
+    equipment_id BIGINT COMMENT '设备ID',
+    maintenance_type ENUM('routine', 'fault', 'preventive', 'emergency') DEFAULT 'routine' COMMENT '维护类型: routine常规/fault故障/preventive预防性/emergency紧急',
+    priority ENUM('low', 'medium', 'high', 'critical') DEFAULT 'medium' COMMENT '优先级: low低/medium中/high高/critical紧急',
+    description TEXT COMMENT '故障描述/维护内容',
+    status ENUM('pending', 'in_progress', 'completed', 'cancelled') DEFAULT 'pending' COMMENT '状态: pending待处理/in_progress处理中/completed已完成/cancelled已取消',
+    assignee VARCHAR(50) COMMENT '负责人',
+    plan_start_time DATETIME COMMENT '计划开始时间',
+    plan_end_time DATETIME COMMENT '计划结束时间',
+    actual_start_time DATETIME COMMENT '实际开始时间',
+    actual_end_time DATETIME COMMENT '实际结束时间',
+    cost DECIMAL(10,2) DEFAULT 0 COMMENT '维护费用',
+    result_note TEXT COMMENT '维护结果备注',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    UNIQUE KEY uk_order_code (order_code),
+    INDEX idx_equipment_id (equipment_id),
+    INDEX idx_status (status),
+    INDEX idx_priority (priority),
+    INDEX idx_maintenance_type (maintenance_type),
+    INDEX idx_create_time (create_time),
+    CONSTRAINT fk_maintenance_equipment FOREIGN KEY (equipment_id) REFERENCES equipment(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='设备维护工单表';
+
+-- ============================================
 -- 初始数据
 -- ============================================
 
