@@ -9,7 +9,8 @@ const App = {
         equipment: EquipmentPage,
         tasks: TasksPage,
         alerts: AlertsPage,
-        simulation: SimulationPage
+        simulation: SimulationPage,
+        maintenance: MaintenancePage
     },
 
     init() {
@@ -86,7 +87,8 @@ const App = {
             equipment: '设备管理',
             tasks: '生产任务',
             alerts: '告警中心',
-            simulation: '数据模拟'
+            simulation: '数据模拟',
+            maintenance: '维护工单'
         };
         document.getElementById('pageTitle').textContent = titles[page] || page;
         document.title = `${titles[page] || page} - 生产线监控系统`;
