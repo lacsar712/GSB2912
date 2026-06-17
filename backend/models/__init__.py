@@ -15,6 +15,7 @@ from .production import (
     ProductionRecord,
     AlertRecord
 )
+from .maintenance import MaintenanceOrder
 
 __all__ = [
     'BaseModel',
@@ -28,5 +29,6 @@ __all__ = [
     'Sensor',
     'ProductionTask',
     'ProductionRecord',
-    'AlertRecord'
+    'AlertRecord',
+    'MaintenanceOrder'
 ]

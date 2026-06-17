@@ -37,6 +37,16 @@
         .status-badge.maintenance { background: rgba(255,193,7,0.1); color: #856404; }
         .status-badge.idle { background: rgba(23,162,184,0.1); color: var(--status-idle); }
 
+        /* 徽章扩展样式 */
+        .badge-info {
+            background: rgba(23, 162, 184, 0.1);
+            color: var(--info-color);
+        }
+        .badge-secondary {
+            background: rgba(108, 117, 125, 0.1);
+            color: var(--secondary-color);
+        }
+
         /* 实时数据卡片 */
         .realtime-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -124,6 +134,10 @@
                 <span class="nav-icon">🔔</span>
                 <span class="nav-text">告警中心</span>
             </a>
+            <a href="#" class="nav-item" data-page="maintenance">
+                <span class="nav-icon">🔧</span>
+                <span class="nav-text">维护工单</span>
+            </a>
             <a href="#" class="nav-item" data-page="simulation">
                 <span class="nav-icon">🧪</span>
                 <span class="nav-text">数据模拟</span>
@@ -169,11 +183,13 @@
     <script src="/js/services/simulation.js"></script>
     <script src="/js/services/equipmentSimulation.js"></script>
     <script src="/js/services/alert.js"></script>
+    <script src="/js/services/maintenance.js"></script>
     <script src="/js/pages/monitor.js"></script>
     <script src="/js/pages/production-line.js"></script>
     <script src="/js/pages/equipment.js"></script>
     <script src="/js/pages/tasks.js"></script>
     <script src="/js/pages/alerts.js"></script>
+    <script src="/js/pages/maintenance.js"></script>
     <script src="/js/pages/simulation.js"></script>
     <script src="/js/main.js"></script>
 </body>
